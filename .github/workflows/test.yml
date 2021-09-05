@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  test-coreutils:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: ./
+      - name: Native utils diagnostics
+        run: uptime --version
