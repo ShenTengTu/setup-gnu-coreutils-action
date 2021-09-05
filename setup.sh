@@ -6,7 +6,7 @@ git submodule init
 git submodule update
 
 echo "Get and check other files needed to build."
-./bootstrap
+./bootstrap || exit $?
 
 prefix=$HOME/gnu-coreutils
 

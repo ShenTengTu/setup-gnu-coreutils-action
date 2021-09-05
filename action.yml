@@ -7,7 +7,7 @@ runs:
       with:
         repository: coreutils/coreutils
         path: gnu-coreutils
-    - run: "sudo apt-get -y install autoconf automake xz-utils"
+    - run: "sudo apt-get -y install autoconf automake autopoint gperf xz-utils"
       shell: bash
     - run: ${{ github.action_path }}/setup.sh
       shell: bash
