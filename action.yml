@@ -3,11 +3,14 @@ description: 'Setup GNU coreutils in the workflow.'
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
+    - name: "Clone GNU coreutils"
+      uses: actions/checkout@v2
       with:
         repository: coreutils/coreutils
         path: gnu-coreutils
-    - run: "sudo apt-get -y install autoconf automake autopoint gperf xz-utils"
+    - name: "Install dependencies"
+      run: "sudo apt-get -y install autoconf automake autopoint gperf xz-utils"
       shell: bash
-    - run: ${{ github.action_path }}/setup.sh
+    - name: "Setup GNU coreutils"
+      run: ${{ github.action_path }}/setup.sh
       shell: bash
