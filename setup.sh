@@ -16,13 +16,11 @@ echo "Configure the package."
 --enable-single-binary \
 --quiet
 
-echo "Compile coreutils then self-test."
+echo "Compile coreutils"
 make -j"$(nproc)"
-make -j"$(nproc)" check
 
-echo "Install coreutils into $prefix, then self-test using the binaries."
+echo "Install coreutils into $prefix"
 make -j"$(nproc)" install
-make -j"$(nproc)" installcheck
 
 echo "$prefix/bin" >>$GITHUB_PATH
 
