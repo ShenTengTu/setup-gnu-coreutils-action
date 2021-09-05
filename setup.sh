@@ -1,12 +1,17 @@
 #!/bin/bash
+cd "$GITHUB_WORKSPACE" || exit $?
+echo "Clone GNU coreutils."
+git clone git://git.sv.gnu.org/coreutils gnu-coreutils
 
-cd "$GITHUB_WORKSPACE/gnu-coreutils" || exit $?
+repo="$GITHUB_WORKSPACE/gnu-coreutils"
 
+cd "$repo" || exit $?
+echo "Initialize submodule."
 git submodule init
 git submodule update
 
 echo "Get and check other files needed to build."
-./bootstrap --skip-po >/dev/null || exit $?
+./bootstrap --skip-po --no-git --gnulib-srcdir="$repo/gnulib" >/dev/null || exit $?
 
 prefix=$HOME/gnu-coreutils
 

@@ -1,13 +1,11 @@
 name: 'Setup GNU coreutils'
 description: 'Setup GNU coreutils in the workflow.'
+branding:
+  icon: 'package'  
+  color: 'green'
 runs:
   using: "composite"
   steps:
-    - name: "Clone GNU coreutils"
-      uses: actions/checkout@v2
-      with:
-        repository: coreutils/coreutils
-        path: gnu-coreutils
     - name: "Install dependencies"
       run: "sudo apt-get -y install autoconf automake autopoint gperf xz-utils"
       shell: bash
