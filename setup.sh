@@ -6,7 +6,7 @@ git submodule init
 git submodule update
 
 echo "Get and check other files needed to build."
-./bootstrap || exit $?
+./bootstrap --skip-po || exit $?
 
 prefix=$HOME/gnu-coreutils
 
@@ -17,12 +17,12 @@ echo "Configure the package."
 --quiet
 
 echo "Compile coreutils then self-test."
-make -j8
-make -j8 check
+make -j"$(nproc)"
+make -j"$(nproc)" check
 
 echo "Install coreutils into $prefix, then self-test using the binaries."
-make -j8 install
-make -j8 installcheck
+make -j"$(nproc)" install
+make -j"$(nproc)" installcheck
 
 echo "$prefix/bin" >>$GITHUB_PATH
 

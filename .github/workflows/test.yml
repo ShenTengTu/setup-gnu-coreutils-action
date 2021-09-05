@@ -8,4 +8,10 @@ jobs:
         uses: actions/checkout@v2
       - uses: ./
       - name: Native utils diagnostics
-        run: uptime --version
+        run: |
+          if [ "$(uptime --version | grep -c "GNU coreutils")" == 1 ]
+          then
+            exit 0
+          else
+            exit 1
+          fi
